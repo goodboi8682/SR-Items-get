@@ -19,7 +19,7 @@ function createbutton(name)
 		for _,item in pairs(workspace:GetDescendants()) do
 			if item:IsA("Tool") and item.Name == name then
 				task.spawn(function()
-					while item.Parent ~- plr.Character and task.wait() do
+					while item.Parent ~= plr.Character and task.wait() do
 						item.Handle.Position = plr.Character.HumanoidRootPart.Position
 					end
 				end
