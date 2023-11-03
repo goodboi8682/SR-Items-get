@@ -18,8 +18,7 @@ function createbutton(name)
 	Button.MouseButton1Click:Connect(function()
 		for _,item in pairs(workspace:GetDescendants()) do
 			if item:IsA("Tool") and item.Name == name then
-				item.Position = plr.Character.HumanoidRootPart.Position
-				plr.Character.Humanoid:EquipTool(item)
+				item.Handle.Position = plr.Character.HumanoidRootPart.Position
 			end
 		end
 	end)
