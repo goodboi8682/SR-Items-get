@@ -8,13 +8,13 @@ local k = Instance.new("UIGradient",game.ReplicatedStorage) k.Rotation = -90 k.C
 local TP = Instance.new("Frame",gui) k:Clone().Parent = TP
 TP.Size = UDim2.new(0.246, 0,0.048, 0) TP.Name = "TopFrame" TP.Position = UDim2.new(0.011, 0,0.51, 0) TP.BackgroundColor3 = Color3.fromRGB(255,255,255) TP.BorderSizePixel = 0
 local name = Instance.new("TextLabel",TP) name.BorderSizePixel = 0
-name.Name = "name" name.Text = "Funi SB menu" name.Font = Enum.Font.Cartoon name.TextScaled = true name.BackgroundTransparency = 1 name.Size = UDim2.new(0.876, 0,1, 0)
+name.Name = "name" name.Text = "SR Items get" name.Font = Enum.Font.Cartoon name.TextScaled = true name.BackgroundTransparency = 1 name.Size = UDim2.new(0.876, 0,1, 0)
 local button = Instance.new("ImageButton",TP) button.Name = "button"  button.BackgroundTransparency = 1 button.Size = UDim2.new(0.091, 0,.739, 0) button.Position = UDim2.new(0.876, 0,.13, 0) button.BorderSizePixel = 0 button.Image = "rbxassetid://6760326863"
 local mainfr = Instance.new("ScrollingFrame",TP) mainfr.Name = "MainFrame" mainfr.Size = UDim2.new(1, 0,8.913, 0) mainfr.Position = UDim2.new(0, 0,1, 0) mainfr.BackgroundColor3 = Color3.fromRGB(39, 39, 39) mainfr.BackgroundTransparency = .1 mainfr.BorderSizePixel = 0
 mainfr.CanvasSize = UDim2.new(0,0,0,0) mainfr.AutomaticCanvasSize = "Y" mainfr.ScrollingDirection = "Y" mainfr.ScrollBarThickness = 0 mainfr.ScrollBarImageTransparency = 1
 local list = Instance.new("UIListLayout",mainfr) list.Padding = UDim.new(.05,0)
 function createbutton(name)
-	local Button = Instance.new("TextButton",mainfr) Button.Name = name  Button.BackgroundColor3 = Color3.fromRGB(255, 0, 4) Button.Text = "Get "..name Button.Font = Enum.Font.Cartoon Button.Size = UDim2.new(1, 0,0.192, 0) Button.TextScaled = true Button.BorderSizePixel = 0 k:Clone().Parent = Button
+	local Button = Instance.new("TextButton",mainfr) Button.Name = name  Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255) Button.Text = "Get "..name Button.Font = Enum.Font.Cartoon Button.Size = UDim2.new(1, 0,0.192, 0) Button.TextScaled = true Button.BorderSizePixel = 0 k:Clone().Parent = Button
 	Button.MouseButton1Click:Connect(function()
 		for _,item in pairs(workspace:GetDescendants()) do
 			if item:IsA("Tool") and item.Name == name then
@@ -24,6 +24,22 @@ function createbutton(name)
 		end
 	end)
 end
+button.MouseButton1Click:Connect(function()
+	if mainfr.Visible == true then
+		button.Rotation = 180
+		task.spawn(function()
+			TS:Create(mainfr,TweenInfo.new(.25,Enum.EasingStyle.Sine,Enum.EasingDirection.Out,0),{Size = UDim2.new(1,0,0,0)}):Play()
+			task.wait(.25)
+			mainfr.Visible = false
+		end)
+	else
+		button.Rotation = 0
+		task.spawn(function()
+			TS:Create(mainfr,TweenInfo.new(.25,Enum.EasingStyle.Sine,Enum.EasingDirection.In,0),{Size = UDim2.new(1,0,8.913,0)}):Play()
+			mainfr.Visible = true
+		end)
+	end
+end)
 createbutton("Boba")
 createbutton("Cube of Ice")
 createbutton("Bull's Essence")
