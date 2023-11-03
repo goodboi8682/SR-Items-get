@@ -16,11 +16,13 @@ local list = Instance.new("UIListLayout",mainfr) list.Padding = UDim.new(.05,0)
 function createbutton(name)
 	local Button = Instance.new("TextButton",mainfr) Button.Name = name  Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255) Button.Text = "Get "..name Button.Font = Enum.Font.Cartoon Button.Size = UDim2.new(1, 0,0.192, 0) Button.TextScaled = true Button.BorderSizePixel = 0 k:Clone().Parent = Button
 	Button.MouseButton1Click:Connect(function()
+		local char = plr.Character
+		local hrp = char:WaitForChild("HumanoidRootPart")
 		for _,item in pairs(workspace:GetDescendants()) do
 			if item:IsA("Tool") and item.Name == name then
 				task.spawn(function()
 					while item.Parent ~= plr.Character and task.wait() do
-						item.Handle.Position = plr.Character.HumanoidRootPart.Position
+						item.Handle.CFrame = hrp.CFrame
 					end
 				end
 			end
